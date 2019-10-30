@@ -1,4 +1,4 @@
-#include "WORD.h"
+п»ї#include "WORD.h"
 
 #include <cstdlib>
 #include <string>
@@ -18,10 +18,10 @@ int main()
 	string temp;
 	WORD buff;
 
-	printf("\n  Выбор Задания:\n");
-	printf("1 - Задание 1 \n");
+	printf("\n  Р’С‹Р±РѕСЂ Р—Р°РґР°РЅРёСЏ:\n");
+	printf("1 - Р—Р°РґР°РЅРёРµ 1 \n");
 
-	printf("\n Любой символ - выход из программы\n");
+	printf("\n Р›СЋР±РѕР№ СЃРёРјРІРѕР» - РІС‹С…РѕРґ РёР· РїСЂРѕРіСЂР°РјРјС‹\n");
 	scanf_s("%d", &select);
 	if (select == 1)
 	{
@@ -31,29 +31,29 @@ int main()
 		{
 			if (!fin.is_open())
 			{
-				throw exception("Exception\n");   //переходим в класс Exception, для обработки ошибки
+				throw exception("Exception\n");   //РїРµСЂРµС…РѕРґРёРј РІ РєР»Р°СЃСЃ Exception, РґР»СЏ РѕР±СЂР°Р±РѕС‚РєРё РѕС€РёР±РєРё
 			}
 		}
 		catch (const exception& exc)
 		{
-			cout << " Такого файла не существует" << endl;
+			cout << " РўР°РєРѕРіРѕ С„Р°Р№Р»Р° РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚" << endl;
 			cout << exc.what();
 			system("pause");
 		}
 		while (!fin.eof())
 		{
-			getline(fin, str); //считывание строки
-			ss << str; // записали строку в ss
-			while (ss >> temp)  // пока не \n запись в temp слова до пробела
+			getline(fin, str); //СЃС‡РёС‚С‹РІР°РЅРёРµ СЃС‚СЂРѕРєРё
+			ss << str; // Р·Р°РїРёСЃР°Р»Рё СЃС‚СЂРѕРєСѓ РІ ss
+			while (ss >> temp)  // РїРѕРєР° РЅРµ \n Р·Р°РїРёСЃСЊ РІ temp СЃР»РѕРІР° РґРѕ РїСЂРѕР±РµР»Р°
 			{
-				buff.setword(temp); // отправляем слово
-				if (buff.change())  // если слово начинается с гласной то выводим его
+				buff.setword(temp); // РѕС‚РїСЂР°РІР»СЏРµРј СЃР»РѕРІРѕ
+				if (buff.change())  // РµСЃР»Рё СЃР»РѕРІРѕ РЅР°С‡РёРЅР°РµС‚СЃСЏ СЃ РіР»Р°СЃРЅРѕР№ С‚Рѕ РІС‹РІРѕРґРёРј РµРіРѕ
 				{
 					cout << buff << " ";
 				}
 			}
 			cout << endl;
-			ss.clear(); // очистит ss строку
+			ss.clear(); // РѕС‡РёСЃС‚РёС‚ ss СЃС‚СЂРѕРєСѓ
 		}
 		fin.close();
 	}
