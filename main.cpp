@@ -1,6 +1,4 @@
 ﻿#include "WORD.h"
-
-#include <cstdlib>
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -9,35 +7,33 @@ using namespace std;
 
 int main()
 {
-
 	setlocale(LC_ALL, "");
 	int select = 0;
-	//=================================
 	stringstream ss;
 	string str;
 	string temp;
-	WORD buff;
+	WORD buff; // объект класса WORD
 
-	printf("\n  Выбор Задания:\n");
-	printf("1 - Задание 1 \n");
-
-	printf("\n Любой символ - выход из программы\n");
-	scanf_s("%d", &select);
+	cout << "Задание 2" << endl;
+	cout << "Введите 1 для начала работы " << endl;
+	cout << "Любой символ - выход из программы" << endl;
+	cin >> select;
 	if (select == 1)
 	{
-		ifstream fin;
-		fin.open("test.txt");
+		ifstream fin; // открыт файл на чтение
+		fin.exceptions(ifstream::badbit | ifstream::failbit); // для ifstream, чтоб увидеть ошибку в  exc.what()
 		try
 		{
-			if (!fin.is_open())
+			fin.open("test.txt");
+			if (!fin.is_open()) // если файл не открыт
 			{
 				throw exception("Exception\n");   //переходим в класс Exception, для обработки ошибки
 			}
 		}
-		catch (const exception& exc)
+		catch (const exception& exc) // ссылка на объект класса exception
 		{
 			cout << " Такого файла не существует" << endl;
-			cout << exc.what();
+			cout << exc.what(); // описание того что случилось. Результат метода возвращает указатель на char (строчку)
 			system("pause");
 		}
 		while (!fin.eof())
@@ -47,7 +43,7 @@ int main()
 			while (ss >> temp)  // пока не \n запись в temp слова до пробела
 			{
 				buff.setword(temp); // отправляем слово
-				if (buff.change())  // если слово начинается с гласной то выводим его
+				if (buff.find())  // если слово начинается с гласной то выводим его
 				{
 					cout << buff << " ";
 				}
@@ -55,7 +51,16 @@ int main()
 			cout << endl;
 			ss.clear(); // очистит ss строку
 		}
-		fin.close();
+		try
+		{
+			fin.close();
+		}
+		catch (const exception& exc)
+		{
+			cout << " Закрыть файл не удалось. Такого файла не существует" << endl;
+			cout << exc.what(); // выдаст инфоормацию об ошибке
+			system("pause");
+		}
 	}
 	system("pause");
 	return 0;
