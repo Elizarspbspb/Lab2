@@ -10,6 +10,7 @@ private:
 public:
 	void setword(string wrd);
 	string getword() const;
-	double change();
-	friend ostream& operator <<(ostream& output, WORD& pointer);
+	double find(); // функция определения 1-ой буквы слова
+	friend ostream& operator<<(ostream &cout, WORD obj); // переопределил оператор вывода
+	// friend  так как нужно 2 параметра передать
 };
