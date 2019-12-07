@@ -1,5 +1,19 @@
 ﻿#include "WORD.h"
+#include <iostream> 
+#include <string> 
+WORD::WORD()
+{
+	cout << "\nКоснтрукторк\n";
+}
+WORD::WORD(string d)
+{
+	cout << "\nКоснтрукторк с параметром\n";
+}
 
+WORD::~WORD()
+{
+	cout << "\nДеструктор\n";
+}
 void WORD::setword(string wrd) // записывает слово
 {
 	word = wrd;
@@ -8,6 +22,7 @@ string WORD::getword() const // возвращает слово
 {
 	return word;
 }
+
 double WORD::find() {  // Находит первую букву в слове, если гласная возвращает 1, иначе 0
 	char ch; 
 	double f = 0;
@@ -45,4 +60,9 @@ ostream & operator<<(ostream & cout, WORD obj) // вывод
 {
 	cout << obj.word;
 	return cout;
+}
+istream & operator>>(istream & cin, WORD obj)
+{
+	cin >> obj.word;
+	return cin;
 }
